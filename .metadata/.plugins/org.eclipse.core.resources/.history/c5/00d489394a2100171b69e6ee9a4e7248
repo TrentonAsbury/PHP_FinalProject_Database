@@ -1,0 +1,79 @@
+<?php
+include 'includes/header.html';
+include 'includes/connect.php';
+
+	$userID = $_GET['id'];
+
+?>
+
+<?php $title="Player DB - View DB"?>
+
+<!DOCTYPE HTML>
+<html>
+	<head> 
+		<title><?php echo $title; ?></title>
+		
+
+		
+	</head>
+
+	<body>
+		
+		<br>
+		<h3><center>EDITING PLAYERS</center></h3>
+		<br>		
+		<?php
+			
+			
+			$query="SELECT * FROM tblone";
+			$result = mysqli_query($conn, $query);
+			while($row = mysqli_fetch_array($result)){
+				
+				if ($userID == $row['userID']){
+				$fName = $row['fName'];
+				$lName = $row['lName'];
+				$age = $row['age'];
+				$average = $row['average'];
+				$clubName = $row['clubName'];
+				$active = $row['active'];
+				$dateUpdated = $row['dateUpdated'];
+				}
+			}
+			
+			
+			
+		?>
+		<br><br>
+		
+		<form name="editForm" id="editForm" action="" method="post"></form>
+		<center>
+		<table style="border: solid">
+			<tr>
+				<td width="75">First Name:</td>
+				<td width="30"><input id="fName" name="fName" value="<?php echo htmlentities($fName) ?>" type="text" tabindex="1" required /></td>
+				<td width="50"></td>
+				<td width="75">Last Name:</td>
+				<td width="30"><input id="fName" name="fName" value="<?php echo htmlentities($lName) ?>" type="text" tabindex="1" required /></td>
+			</tr>
+			
+			<tr>
+				<td colspan="2" align="center"><input type="submit" value="Submit"></td>
+				<td colspan="2" align="center"><input type="reset" value="Reset"></td>
+			</tr>
+			
+			
+		</table>
+		</center>
+	</form>
+		
+		
+		
+	</body>
+	
+	
+</html>
+
+<?php include ('includes/footer.html'); ?>
+
+
+

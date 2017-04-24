@@ -1,0 +1,98 @@
+	<?php include'../connect.php'; ?>
+	
+
+<?php 
+	$FName = $_POST['Field1'];
+	$LName = $_POST['Field2'];
+	$age = $_POST['Field5'];
+	$average = $_POST['Field7'];
+	$clubName = $_POST['Field6'];
+	$active = $_POST['isActive'];
+	$date = date('Y-m-d');
+	
+	echo "$active";
+	
+	if ($active == 1){
+		$active = 1;
+		echo "1";
+	}else{
+		$active = 0;
+		echo "0";
+	}
+?>
+
+<?php
+     // Create query to insert data to the table
+     
+     
+	    $query = "INSERT INTO tblone
+	     	(fName, lName, age, average, clubName, active, dateUpdated)
+	     	Values ('$FName', '$LName', '$age', '$average', '$clubName', '$active', '$date')";
+
+        if (mysqli_query($conn, $query))
+	   {
+	   		print "Your data inserted";
+	   }
+	   else
+	   {
+	   		print "Error: data was not inserted";
+	   }
+?>
+
+<!DOCTYPE html>
+<html>
+	<head></head>
+	<body><br><br>
+		Go back to <a href="../../index.php">Home</a>
+		
+		<h1>Added Data:</h1><br>
+		Date: <?php echo $date; ?>
+		<table style="border: solid; border-color: red;">
+			<tr>
+				<td width="120"><strong>First Name:</strong></td>
+				<td width="70"><?php echo $FName; ?></td>
+				<td width="50"></td>
+				<td width="120"><strong>Last Name:</strong></td>
+				<td width="70"><?php echo $LName; ?></td>
+			</tr>
+			
+			<tr>
+				<td width="120"><strong>Age:</strong></td>
+				<td width="70"><?php echo $age; ?></td>
+				<td width="50"></td>
+				<td width="120"><strong>Average:</strong></td>
+				<td width="70"><?php echo $average; ?></td>
+			</tr>
+			
+			<tr>
+				<td width="120"><strong>Club Name:</strong></td>
+				<td width="70"><?php $clubName ?></td>
+				<td width="50"></td>
+				<td width="120"><strong>Active:</strong></td>
+				<td width="70">
+					<?php
+					
+						if ($active == 1){
+						echo "Active";
+					}else{
+						echo "Non-Active";
+					}
+					
+		
+					?>
+					
+					
+					
+				</td>
+			</tr>
+			
+			
+			
+			
+		</table>
+		
+		
+		
+	</body>
+</html>
+

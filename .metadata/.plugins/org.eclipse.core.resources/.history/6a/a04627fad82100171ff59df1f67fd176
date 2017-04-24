@@ -1,0 +1,76 @@
+<?php
+include 'includes/header.html';
+include 'includes/connect.php';
+?>
+
+<?php $title="Player DB - View DB"?>
+
+<!DOCTYPE HTML>
+<html>
+	<head> 
+		<title><?php echo $title; ?></title>
+		
+
+		
+	</head>
+
+	<body>
+		
+		<br>
+		<h3><center> listing of all data in the database</center></h3>
+		<br>
+			<table>
+			<?php
+			
+			   $query="SELECT * FROM tblone";
+			   $result = mysqli_query($conn, $query);
+			   echo"<tr>";
+			   	 
+				 
+			   	 echo'<th width="50">Edit</th>' ;
+			     echo'<th width="200" aligne="center">Name</th>' ;  
+				 echo'<th width="75">Age</th>' ;
+				 echo'<th width="75">Average</th>' ;
+				 echo'<th width="150">Club Name</th>' ;  
+				 echo'<th width="75">Active</th>' ;
+				 echo'<th width="100">Last Updated</th>' ;
+			   echo'<th width="50">Delete</th>' ;
+			   echo"</tr>";
+			   
+			   while($row = mysqli_fetch_array($result))
+			   {
+			   	$userID = $row['userID'];
+			   	$active = $row['active'];
+			   	
+			   	echo"<tr>";
+				
+				echo '<td align="center"><a href="editForm.php?id=' . $userID . '">Edit</a></td>';
+				echo '<td align="center">' . $row['lName'] . ", " . $row['fName'] . "</td>";
+				echo '<td align="center">' . $row['age'] . "</td>";
+				echo '<td align="center">' . $row['average'] . "</td>";
+				echo '<td align="center">' . $row['clubName'] . "</td>";
+				
+				echo '<td align="center">';
+				
+				if ($active == 1){
+						echo "active";
+					}else{
+						echo "";
+					}
+				echo '</td>';
+				
+				echo '<td align="center">' . $row['dateUpdated'] . "</td>";
+				echo '<td align="center">' . 'Delete' . "</td>";
+				echo"</tr>";
+			   }
+			?>
+		</table>
+		
+		
+	</body>
+	
+	
+</html>
+
+<?php include ('includes/footer.html'); ?>
+
