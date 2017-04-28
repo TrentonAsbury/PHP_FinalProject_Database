@@ -1,0 +1,91 @@
+<?php
+include 'includes/header.html';
+?>
+
+<?php $title="Player DB - Home"?>
+
+<!DOCTYPE HTML>
+<html>
+	<head> 
+		<title><?php echo $title; ?></title>
+		
+		<script type="text/javascript">
+			
+			function validation(){
+				
+				
+				//alert(document.getElementsByClassName('actBox').value);
+				
+				var act = document.getElementById('actBox').checked; 
+			
+				if (act == true) {
+					document.getElementsByClassName('active2').value = "1";
+					
+				} else {
+					document.getElementsByClassName('active2').value = "0";
+					
+				}
+				
+				
+				alert (act);
+				//document.getElementsByClassName('actBox').value = chk;
+				
+				//alert(document.getElementsByClassName('actBox').value);
+				
+				return true;
+			}
+		</script>
+
+		
+	</head>
+
+	<body>
+		
+		<form id="form1" name="form1" method="post" novalidate action="includes/dump/addPerson_dump.php" onsubmit="return validation()">
+			
+			<input id="active2" name="active2" type="hidden" />
+			
+		<br><br><br>
+			<center><table border="none" width="650">
+			
+				<tr>
+					<td width="15%">First Name: <span style="color: red; font-weight: bold;">*</span></td>
+					<td width="35%"><input id="fName" name="fName" type="text" tabindex="1" required/></td>
+					<td width="15%">Last Name: <span style="color: red; font-weight: bold;">*</span></td>
+					<td width="35%"><input id="lName" name="lName" type="text" tabindex="2" required/></td>
+				</tr>
+				
+				<tr>
+					<td width="15%">Age: <span style="color: red; font-weight: bold;">*</span></td>
+					<td width="35%"><input id="age" name="age" type="text" tabindex="3" required/></td>
+					<td width="15%">Average: <span style="color: red; font-weight: bold;">*</span></td>
+					<td width="35%"><input id="average" name="average" type="text" tabindex="4" required/></td>
+				</tr>
+				
+				<tr>
+					<td width="15%">Club Name: <span style="color: red; font-weight: bold;">*</span></td>
+					<td width="35%"><input id="clubName" name="clubName" type="text" tabindex="5" required/></td>
+					<td width="15%">Active:</td>
+					<td width="35%"><input id="actBox" name="actBox" type="checkbox" tabindex="6" value="1"/></td>
+				</tr>
+				<tr height="15px"></tr>
+				<tr>
+					<td colspan="2"><center>
+						<input id="saveForm" name="saveForm" type="submit" value="Submit" style="height: 30px; width: 75px; font-size: 15px; font-weight: bold;"/>
+					</center></td>
+					
+					<td colspan="2"><center>
+						<input id="resetForm" name="resetForm" type="reset" value="Reset" style="height: 30px; width: 75px; font-size: 15px; font-weight: bold;"/>
+					</center></td>
+				</tr>
+				
+			</table></center>
+			<br><br>
+		</form>
+	</body>
+	
+	
+</html>
+
+<?php include ('includes/footer.html'); ?>
+

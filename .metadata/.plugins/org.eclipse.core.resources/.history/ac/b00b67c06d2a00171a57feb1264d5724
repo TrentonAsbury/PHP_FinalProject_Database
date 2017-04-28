@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html>
+	<head>
+
+		<title> Form - Add Player </title>
+
+		<!-- Meta Tags -->
+		<meta charset="utf-8">
+		<meta name="generator" content="Wufoo">
+		<meta name="robots" content="index, follow">
+		<meta http-equiv="content-type" content="text/html; charset=utf-8" />
+
+		<!-- CSS -->
+		<link href="css/add_person/structure.css" rel="stylesheet">
+		<link href="css/add_person/form.css" rel="stylesheet">
+		<link href="css/add_person/theme.css" rel="stylesheet">
+		<link rel="stylesheet" href="css/style.css" type="text/css" media="screen" />
+		<link href="https://" rel="stylesheet">
+
+		<!-- JavaScript -->
+		<script src="../../scripts/wufoo.js"></script>
+
+<script type="text/javascript">
+
+	function validate(){
+		
+		
+		//alert(document.getElementsByClassName('actBox').value);
+		
+		//var act = document.getElementById('actBox').checked; 
+		
+		if (actBox.checked == true) {
+			document.getElementsByClassName('active2').value = 1;
+			alert("1");
+		} else {
+			document.getElementsByClassName('active2').value = 0;
+			alert("0");
+		}
+		
+		//document.getElementsByClassName('actBox').value = chk;
+		
+		//alert(document.getElementsByClassName('actBox').value);
+	}
+</script>
+
+	</head>
+	<?php
+		$chkBox = 1;
+	?>
+
+
+	<body id="public" onload="change()">
+		
+		<header>
+		<h1>Coach's DB</h1>
+		<h2>Keep track of your players</h2>
+	</header>
+	<nav>
+		<ul>
+			<li><a href="index.php">Home Page</a></li>
+			<li><a href="addPerson.php">Add Player</a></li>
+			<li><a href="viewDB.php">View Players</a></li>
+			<li><a href="edit.php">Edit Players</a></li>
+			<li><a href="delete.php">Delete Player</a></li>
+		</ul>
+	</nav>
+		
+		<br>
+		<h3><center>ADD PLAYER</center></h3>
+		<br>
+		
+		
+		<div id="container" class="ltr">
+
+			<form id="form1" name="form1" class="wufoo topLabel page" accept-charset="UTF-8" autocomplete="off" enctype="multipart/form-data" method="post" novalidate
+			action="includes/dump/addPerson_dump.php" onsubmit="validate()">
+
+				<input id="active2" name="active2" type="hidden" />
+				
+				<ul>
+
+					<!-- TEXT BOX - NAME -->
+					<li id="foli1" class="notranslate leftHalf     ">
+						<label class="desc" id="title1" for="Field1"> Name <span id="req_1" class="req">*</span> </label>
+						<span>
+							<input id="Field1" name="Field1" type="text" class="field text fn" value="" size="8" tabindex="1" required />
+							<label for="Field1">First</label> </span>
+
+						<span>
+							<input id="Field2" name="Field2" type="text" class="field text ln" value="" size="14" tabindex="2" required />
+							<label for="Field2">Last</label> </span>
+					</li>
+
+					<!-- TEXT BOX - AGE -->
+					<li id="foli5" class="notranslate rightHalf">
+						<label class="desc " id="title5" for="Field5"> Age <span id="req_5" class="req">*</span> </label>
+						<div>
+							<input id="Field5" name="Field5" type="text" class="field text nospin small"  value="7" maxlength="3" tabindex="3" onkeyup="validateRange(5, 'digit');" required />
+							<label for="Field5">Maximum Allowed: <var id="rangeMaxMsg5">3</var> digits.&nbsp;&nbsp;&nbsp; <em class="currently">Currently Used: <var id="rangeUsedMsg5">1</var> digits.</em></label>
+						</div>
+					</li>
+
+					<!-- TEXT BOX - CLUB NAME -->
+					<li id="foli6" class="notranslate leftHalf">
+						<label class="desc" id="title6" for="Field6"> Club Name <span id="req_6" class="req">*</span> </label>
+						<div>
+							<input id="Field6" name="Field6" type="text" class="field text medium" value="" maxlength="255" tabindex="4" onkeyup="" required />
+						</div>
+					</li>
+
+					<!-- TEXT BOX - AVERAGE -->
+					<li id="foli7" class="notranslate rightHalf">
+						<label class="desc" id="title7" for="Field7"> Average </label>
+						<div>
+							<input id="Field7" name="Field7" type="text" class="field text nospin medium"  value="" min="0" max="100" maxlength="255" tabindex="5" onkeyup="validateRange(7, 'value');"/>
+							<label for="Field7">Enter a number between <var id="rangeMinMsg7">0</var> and <var id="rangeMaxMsg7">100</var>.</label>
+						</div>
+					</li>
+					
+					<!-- CHECK BOX - ACTIVE -->
+					
+					
+					<li id="foli8" class=" ">
+						<fieldset>
+							<div>
+								<span class="subfield">
+									<input id="actBox" type="checkbox" value="1" tabindex="6"/>
+									
+									
+									<label class="choice" for="Field8"> <span class="choice__text notranslate" >Active</span>
+								<span class="choice__qty"> </span> </label> </span>
+							</div>
+						</fieldset>
+					</li>
+					
+					<!-- BUTTON - SUBMIT -->
+					<li class="buttons ">
+						<center>
+						<table width="50%">
+							<tr>
+								<td align="center">
+							<input id="saveForm" name="saveForm" class="btTxt submit" type="submit" value="Submit" style="height: 25px; width: 75px; font-size: 15px;"/>
+								</td>
+								<td align="center">
+							<input id="resetForm" name="resetForm" class="btTxt submit" type="reset" value="Reset" style="height: 25px; width: 75px; font-size: 15px;" />
+								</td>
+							</tr>
+						</table></center>
+						
+					</li>
+
+				</ul>
+			</form>
+
+		</div>
+	</body>
+</html>

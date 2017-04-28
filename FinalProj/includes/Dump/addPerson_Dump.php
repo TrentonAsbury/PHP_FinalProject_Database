@@ -1,14 +1,21 @@
 	<?php include'../connect.php';
 	
 	
-	$FName = $_POST['Field1'];
-	$LName = $_POST['Field2'];
-	$age = $_POST['Field5'];
-	$average = $_POST['Field7'];
-	$clubName = $_POST['Field6'];
-	$active = $_POST['actBox'];
+	$FName = $_POST['fName'];
+	$LName = $_POST['lName'];
+	$age = $_POST['age'];
+	$average = $_POST['average'];
+	$clubName = $_POST['clubName'];
+	$active = isset($_POST['actBox']);
 	$date = date('Y-m-d');
 	
+	echo $active;
+	
+	if($active == TRUE){
+		$active = 1;
+	}else{
+		$active = 0;
+	}
 	
      // Create query to insert data to the table
      
@@ -25,6 +32,9 @@
 	   {
 	   		print "ERORR UPDATED RECORD: DATA NOT ADDED";
 	   }
+	   
+	   echo $active;
+	   
 ?>
 
 <!DOCTYPE html>
@@ -60,7 +70,7 @@
 				<td width="70">
 					<?php
 					
-						if ($active == TRUE){
+						if ($active == 1){
 						echo "Active";
 					}else{
 						echo "Non-Active";

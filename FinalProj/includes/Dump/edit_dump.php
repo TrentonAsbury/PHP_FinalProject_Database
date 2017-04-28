@@ -7,7 +7,7 @@
 	$age = $_POST['age'];
 	$average = $_POST['average'];
 	$clubName = $_POST['clubName'];
-	$active = $_POST['actBox'];
+	$active = isset($_POST['actBox']);
 	$date = date('Y-m-d');
 	$userID = $_POST['userID'];
 	
@@ -17,7 +17,7 @@
 	$age_old = $_POST['age_old'];
 	$average_old = $_POST['average_old'];
 	$clubName_old = $_POST['clubName_old'];
-	$active_old = $_POST['active_old'];
+	$active_old = isset($_POST['active_old']);
 	$date_old = $_POST['dateUpdated_old'];
 
 ?>

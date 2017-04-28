@@ -1,0 +1,32 @@
+<?php
+include 'includes/header.html';
+?>
+
+<?php $title="Player DB - Home"?>
+
+<!DOCTYPE HTML>
+<html>
+	<head> 
+		<title><?php echo $title; ?></title>
+		
+
+		
+	</head>
+
+	<body>
+		<center>
+		<table border="none" width="650">
+			<tr>
+				<td width="50%"></td>
+				<td width="50%"></td>
+			</tr>
+			
+		</table>
+		</center>
+	</body>
+	
+	
+</html>
+
+<?php include ('includes/footer.html'); ?>
+
