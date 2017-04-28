@@ -9,7 +9,6 @@
 	$active = isset($_POST['actBox']);
 	$date = date('Y-m-d');
 	
-	echo $active;
 	
 	if($active == TRUE){
 		$active = 1;
@@ -32,8 +31,6 @@
 	   {
 	   		print "ERORR UPDATED RECORD: DATA NOT ADDED";
 	   }
-	   
-	   echo $active;
 	   
 ?>
 
@@ -64,7 +61,7 @@
 			
 			<tr>
 				<td width="120"><strong>Club Name:</strong></td>
-				<td width="70"><?php $clubName ?></td>
+				<td width="70"><?php echo $clubName ?></td>
 				<td width="50"></td>
 				<td width="120"><strong>Active:</strong></td>
 				<td width="70">

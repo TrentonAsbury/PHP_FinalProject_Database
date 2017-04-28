@@ -1,0 +1,36 @@
+<?php include'connect2.php';
+
+if (!$conn){
+	die("CONNECTION FAILED!!");
+} 
+
+
+
+
+$sql = "create table tblone(
+userID int(5) not null auto_increment primary key,
+fName varchar(100) not null,
+lName varchar(100) not null,
+age int(3) not null,
+average double not null,
+clubName varchar(100) not null,
+active int(1) null,
+dateUpdate date not null
+)";
+
+if (mysqli_query($conn, $sql)){
+	echo "TABLE CREATED SUCCESSFULLY!!";
+}else{
+	echo "ERROR CREATING TABLE!!";
+}
+
+mysqli_close($conn);
+
+
+echo '<br><br>Go back to <a href="../index.php">Home</a>';
+
+
+?>
+
+
+ 

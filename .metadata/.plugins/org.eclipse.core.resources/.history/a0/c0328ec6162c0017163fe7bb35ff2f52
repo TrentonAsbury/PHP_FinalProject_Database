@@ -1,0 +1,55 @@
+<?php
+include 'includes/header.html';
+include 'includes/connect2.php';
+?>
+
+<?php $title="Player DB - Home"?>
+
+<!DOCTYPE HTML>
+<html>
+	<head> 
+		<title><?php echo $title; ?></title>
+		
+
+		
+	</head>
+
+	<body>
+		<center>
+		<table border="none" width="650">
+			<tr><td><br>
+			<center><img src="images/activity.jpg" width="400" alt="Activities" /></center>
+		<p align="center"><font size="5"><br>	
+			This program will help keep track of all your players teams, stats, and wether they are active in the system.</font></p>
+			</td></tr>
+		</table>
+		</center>
+	
+	<form action="includes/table.php"><input type="submit" value="Create Table" />
+	
+	</body>
+	
+	
+</html>
+
+<?php
+	// SQL query
+	$sql = "SHOW TABLES IN `trentoncars`";
+
+	// perform the query and store the result
+	$result = $conn->query($sql);
+	
+	
+	// if the $result not False, and contains at least one row
+	if($result === false) {
+	  echo '<form action="includes/table.php"><input type="submit" value="Create Table" />';
+	}
+
+	
+	$conn->close();
+	
+	
+?>
+
+<?php include ('includes/footer.html'); ?>
+

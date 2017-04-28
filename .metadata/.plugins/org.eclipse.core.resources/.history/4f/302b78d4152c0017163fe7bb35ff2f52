@@ -1,0 +1,32 @@
+<?php include'connect.php';
+
+if (!$conn){
+	die("CONNECTION FAILED!!");
+} 
+
+
+
+
+$sql = "create table test(
+modelID int(5) not null auto_increment primary key,
+name varchar(50) null,
+type varchar(50) null,
+year int(4) null
+)";
+
+if (mysqli_query($conn, $sql)){
+	echo "TABLE CREATED SUCCESSFULLY!!";
+}else{
+	echo "ERROR CREATING TABLE!!";
+}
+
+mysqli_close($conn);
+
+
+echo 'Go back to <a href="../../index.php">Home</a>';
+
+
+?>
+
+
+ 

@@ -1,161 +1,134 @@
-<!DOCTYPE html>
+<?php
+include 'includes/header.html';
+?>
+
+<?php $title="Player DB - Home"?>
+
+<!DOCTYPE HTML>
 <html>
-	<head>
-
-		<title> Form - Add Player </title>
-
-		<!-- Meta Tags -->
-		<meta charset="utf-8">
-		<meta name="generator" content="Wufoo">
-		<meta name="robots" content="index, follow">
-		<meta http-equiv="content-type" content="text/html; charset=utf-8" />
-
-		<!-- CSS -->
-		<link href="css/add_person/structure.css" rel="stylesheet">
-		<link href="css/add_person/form.css" rel="stylesheet">
-		<link href="css/add_person/theme.css" rel="stylesheet">
-		<link rel="stylesheet" href="css/style.css" type="text/css" media="screen" />
-		<link href="https://" rel="stylesheet">
-
-		<!-- JavaScript -->
-		<script src="../../scripts/wufoo.js"></script>
-
-<script type="text/javascript">
-
-	function validate(){
+	<head> 
+		<title><?php echo $title; ?></title>
 		
-		
-		//alert(document.getElementsByClassName('actBox').value);
-		
-		//var act = document.getElementById('actBox').checked; 
-		
-		if (document.getElementById('actBox2').checked === 1) {
-			document.getElementsByClassName('active2').value = 1;
+		<script type="text/javascript">
 			
-		} else {
-			document.getElementsByClassName('active2').value = 0;
 			
-		}
-		
-		alert("hello");
-		//alert (document.getElementsByClassName('active2').value);
-		//document.getElementsByClassName('actBox').value = chk;
-		
-		//alert(document.getElementsByClassName('actBox').value);
-		
-		return false;
-	}
-</script>
-
-	</head>
-	<?php
-		$chkBox = 1;
-	?>
-
-
-	<body id="public" onload="change()">
-		
-		<header>
-		<h1>Coach's DB</h1>
-		<h2>Keep track of your players</h2>
-	</header>
-	<nav>
-		<ul>
-			<li><a href="index.php">Home Page</a></li>
-			<li><a href="addPerson.php">Add Player</a></li>
-			<li><a href="viewDB.php">View Players</a></li>
-			<li><a href="edit.php">Edit Players</a></li>
-			<li><a href="delete.php">Delete Player</a></li>
-		</ul>
-	</nav>
-		
-		<br>
-		<h3><center>ADD PLAYER</center></h3>
-		<br>
-		
-		
-		<div id="container" class="ltr">
-
-			<form id="form1" name="form1" class="wufoo topLabel page" accept-charset="UTF-8" autocomplete="off" enctype="multipart/form-data" method="post" novalidate
-			action="includes/dump/addPerson_dump.php" onsubmit="reutrn validate()">
-
-				<input id="active2" name="active2" type="hidden" />
+			function validateThis() {
+				var msg = "Please complete the following items:\n";
+				var Lmsg = msg.length;
 				
-				<ul>
+				/* GETTING VALUES FROM THE FORM TO CHECK EVERYTHING IS IN DATA RANGE*/
+				var theForm = document.forms["form1"];
+				var FName = theForm.elements["fName"];
+				var LName = theForm.elements["lName"];
+				var age = theForm.elements["age"];
+				var average = theForm.elements["average"];
+				var clubName = theForm.elements["clubName"];
+				
+				if(age.value != ""){
+					age = parseInt(age.value);
+				}else{
+					age = 0;
+				}
+				
+				if(average.value != ""){
+					average = parseInt(average.value);
+				}else{
+					average = 0;
+				}
+				
+				
+				/* CHECKING VALUES */
+				
+				if (FName.value == ""){
+					msg += " - First Name: Enter A Name\n";
+				}
+				
+				if (LName.value == ""){
+					msg += " - Last Name: Enter A Name\n";
+				}
+				
+				if (clubName.value == ""){
+					msg += " - Club Name: Enter A Club Name\n";
+				}
+				
+				if (isNaN(age)){
+					msg += " - Age: Enter A No.\n";
+				}else{
+					if(age > 100 || age < 7)
+						msg += " - Age: Out of Range\n";
+				}
+				
+				if (isNaN(average)){
+					msg += " - Average: Enter A No.\n";
+				}else{
+					if(average > 100 || average < 0)
+						msg += " - Average: Out of Range\n";
+				}
+				
+				
+				
+				/* DISPLAY ERROR MESSAGE, TERMINATE SUBMISSION IF ERROR */
+				if (Lmsg != msg.length) {
+					alert(msg);
+					return false;
+				} else {
+					return true;
+				}		
+	}
+	
+			
+		</script>
 
-					<!-- TEXT BOX - NAME -->
-					<li id="foli1" class="notranslate leftHalf     ">
-						<label class="desc" id="title1" for="Field1"> Name <span id="req_1" class="req">*</span> </label>
-						<span>
-							<input id="Field1" name="Field1" type="text" class="field text fn" value="" size="8" tabindex="1" required />
-							<label for="Field1">First</label> </span>
+		
+	</head>
 
-						<span>
-							<input id="Field2" name="Field2" type="text" class="field text ln" value="" size="14" tabindex="2" required />
-							<label for="Field2">Last</label> </span>
-					</li>
-
-					<!-- TEXT BOX - AGE -->
-					<li id="foli5" class="notranslate rightHalf">
-						<label class="desc " id="title5" for="Field5"> Age <span id="req_5" class="req">*</span> </label>
-						<div>
-							<input id="Field5" name="Field5" type="text" class="field text nospin small"  value="7" maxlength="3" tabindex="3" onkeyup="validateRange(5, 'digit');" required />
-							<label for="Field5">Maximum Allowed: <var id="rangeMaxMsg5">3</var> digits.&nbsp;&nbsp;&nbsp; <em class="currently">Currently Used: <var id="rangeUsedMsg5">1</var> digits.</em></label>
-						</div>
-					</li>
-
-					<!-- TEXT BOX - CLUB NAME -->
-					<li id="foli6" class="notranslate leftHalf">
-						<label class="desc" id="title6" for="Field6"> Club Name <span id="req_6" class="req">*</span> </label>
-						<div>
-							<input id="Field6" name="Field6" type="text" class="field text medium" value="" maxlength="255" tabindex="4" onkeyup="" required />
-						</div>
-					</li>
-
-					<!-- TEXT BOX - AVERAGE -->
-					<li id="foli7" class="notranslate rightHalf">
-						<label class="desc" id="title7" for="Field7"> Average </label>
-						<div>
-							<input id="Field7" name="Field7" type="text" class="field text nospin medium"  value="" min="0" max="100" maxlength="255" tabindex="5" onkeyup="validateRange(7, 'value');"/>
-							<label for="Field7">Enter a number between <var id="rangeMinMsg7">0</var> and <var id="rangeMaxMsg7">100</var>.</label>
-						</div>
-					</li>
+	<body>
+		
+		<form id="form1" name="form1" method="post" action="includes/dump/addPerson_dump.php" onSubmit="return validateThis();">
+			
+			<input id="active2" name="active2" type="hidden" />
+			
+		<br><br><br>
+			<center><table border="none" width="650">
+			
+				<tr>
+					<td width="15%">First Name: <span style="color: red; font-weight: bold;">*</span></td>
+					<td width="35%"><input id="fName" name="fName" type="text" tabindex="1"/></td>
+					<td width="15%">Last Name: <span style="color: red; font-weight: bold;">*</span></td>
+					<td width="35%"><input id="lName" name="lName" type="text" tabindex="2" /></td>
+				</tr>
+				
+				<tr>
+					<td width="15%">Age: <span style="color: red; font-weight: bold;">*</span></td>
+					<td width="35%"><input id="age" name="age" type="text" tabindex="3" /></td>
+					<td width="15%">Average: <span style="color: red; font-weight: bold;">*</span></td>
+					<td width="35%"><input id="average" name="average" type="text" tabindex="4" /></td>
+				</tr>
+				
+				<tr>
+					<td width="15%">Club Name: <span style="color: red; font-weight: bold;">*</span></td>
+					<td width="35%"><input id="clubName" name="clubName" type="text" tabindex="5" /></td>
+					<td width="15%">Active:</td>
+					<td width="35%"><input name="actBox" type="checkbox" tabindex="6" value="active"/></td>
+				</tr>
+				<tr height="15px"></tr>
+				<tr>
+					<td colspan="2"><center>
+						<input id="saveForm" name="saveForm" type="submit" value="Submit" style="height: 30px; width: 75px; font-size: 15px; font-weight: bold;"/>
+					</center></td>
 					
-					<!-- CHECK BOX - ACTIVE -->
-					
-					
-					<li id="foli8" class=" ">
-						<fieldset>
-							<div>
-								<span class="subfield">
-									<input name="actBox2" type="checkbox" value="1" tabindex="6"/>
-									
-									
-									<label class="choice" for="Field8"> <span class="choice__text notranslate" >Active</span>
-								<span class="choice__qty"> </span> </label> </span>
-							</div>
-						</fieldset>
-					</li>
-					
-					<!-- BUTTON - SUBMIT -->
-					<li class="buttons ">
-						<center>
-						<table width="50%">
-							<tr>
-								<td align="center">
-							<input id="saveForm" name="saveForm" class="btTxt submit" type="submit" value="Submit" style="height: 25px; width: 75px; font-size: 15px;"/>
-								</td>
-								<td align="center">
-							<input id="resetForm" name="resetForm" class="btTxt submit" type="reset" value="Reset" style="height: 25px; width: 75px; font-size: 15px;" />
-								</td>
-							</tr>
-						</table></center>
-						
-					</li>
-
-				</ul>
-			</form>
-
-		</div>
+					<td colspan="2"><center>
+						<input id="resetForm" name="resetForm" type="reset" value="Reset" style="height: 30px; width: 75px; font-size: 15px; font-weight: bold;"/>
+					</center></td>
+				</tr>
+				
+			</table></center>
+			<br><br>
+		</form>
 	</body>
+	
+	
 </html>
+
+<?php include ('includes/footer.html'); ?>
+

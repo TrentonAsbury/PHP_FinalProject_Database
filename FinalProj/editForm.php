@@ -28,26 +28,6 @@ include 'includes/connect.php';
 		<!-- JavaScript -->
 		<script src="../../scripts/wufoo.js"></script>
 
-<script type="text/javascript">
-
-	function validation(){
-		
-		var act = document.getElementById('active').checked; 
-		
-		if (act == 1) {
-			var chk = 1;
-			alert("1");
-		} else {
-			var chk = 0;
-			alert("0");
-		}
-		
-		document.getElementsByClassName('active2').value = chk;
-		
-		
-	}
-</script>
-
 	</head>
 	
 	<?php
@@ -67,7 +47,6 @@ include 'includes/connect.php';
 				$dateUpdated = $row['dateUpdated'];
 				}	
 			}
-			echo $fName . " " . $lName . " " . $active;
 			
 			
 		?><?php
@@ -87,24 +66,71 @@ include 'includes/connect.php';
 		
 		<script type="text/javascript">
 
-		function validation(){
-		
-		var act = document.getElementById('active').checked; 
-		
-		if (act == 1) {
-			//var chk = 1;
-			alert("1");
-		} else {
-			var chk = 0;
-			//alert("0");
-		}
-		
-		
-		
-		document.getElementsByClassName('active2').value = chk;
-		alert(document.getElementsByClassName('active2').value);
-		
+		function validateThis() {
+				var msg = "Please complete the following items:\n";
+				var Lmsg = msg.length;
+				
+				/* GETTING VALUES FROM THE FORM TO CHECK EVERYTHING IS IN DATA RANGE*/
+				var theForm = document.forms["Form1"];
+				var FName = theForm.elements["fName"];
+				var LName = theForm.elements["lName"];
+				var age = theForm.elements["age"];
+				var average = theForm.elements["average"];
+				var clubName = theForm.elements["clubName"];
+				
+				if(age.value != ""){
+					age = parseInt(age.value);
+				}else{
+					age = 0;
+				}
+				
+				if(average.value != ""){
+					average = parseInt(average.value);
+				}else{
+					average = 0;
+				}
+				
+				
+				/* CHECKING VALUES */
+				
+				if (FName.value == ""){
+					msg += " - First Name: Enter A Name\n";
+				}
+				
+				if (LName.value == ""){
+					msg += " - Last Name: Enter A Name\n";
+				}
+				
+				if (clubName.value == ""){
+					msg += " - Club Name: Enter A Club Name\n";
+				}
+				
+				if (isNaN(age)){
+					msg += " - Age: Enter A No.\n";
+				}else{
+					if(age > 100 || age < 7)
+						msg += " - Age: Out of Range\n";
+				}
+				
+				if (isNaN(average)){
+					msg += " - Average: Enter A No.\n";
+				}else{
+					if(average > 100 || average < 0)
+						msg += " - Average: Out of Range\n";
+				}
+				
+				
+				
+				/* DISPLAY ERROR MESSAGE, TERMINATE SUBMISSION IF ERROR */
+				if (Lmsg != msg.length) {
+					alert(msg);
+					return false;
+				} else {
+					return true;
+				}		
 	}
+	
+	
 </script>
 
 
@@ -146,13 +172,13 @@ include 'includes/connect.php';
 			}
 			
 			
-			echo $active_old;
+		
 			
 			
 		?>
 		<br><br>
 		
-		<form name="editForm" id="editForm" action="includes/dump/edit_dump.php" method="post" onsubmit="validation()">
+		<form name="Form1" id="Form1" action="includes/dump/edit_dump.php" method="post" onSubmit="return validateThis();">
 		
 		
 		
@@ -168,23 +194,23 @@ include 'includes/connect.php';
 			
 			<tr>
 				<td width="80">First Name: <font color="red"><strong>*</strong></font> </td>
-				<td width="30"><input id="fName" name="fName" value="<?php echo htmlentities($fName) ?>" type="text" tabindex="1" required /></td>
+				<td width="30"><input id="fName" name="fName" value="<?php echo htmlentities($fName) ?>" type="text" tabindex="1" /></td>
 				<td width="50"></td>
 				<td width="75">Last Name: <font color="red"><strong>*</strong></font></td>
-				<td width="30"><input id="lName" name="lName" value="<?php echo htmlentities($lName) ?>" type="text" tabindex="2" required /></td>
+				<td width="30"><input id="lName" name="lName" value="<?php echo htmlentities($lName) ?>" type="text" tabindex="2" /></td>
 			</tr>
 			
 			<tr>
 				<td width="80">Age: <font color="red"><strong>*</strong></font></td>
-				<td width="30"><input id="age" name="age" value="<?php echo htmlentities($age) ?>" type="text" tabindex="3" required /></td>
+				<td width="30"><input id="age" name="age" value="<?php echo htmlentities($age) ?>" type="text" tabindex="3" /></td>
 				<td width="50"></td>
 				<td width="75">Average: <font color="red"><strong>*</strong></font></td>
-				<td width="30"><input id="average" name="average" value="<?php echo htmlentities($average) ?>" type="text" tabindex="4" required /></td>
+				<td width="30"><input id="average" name="average" value="<?php echo htmlentities($average) ?>" type="text" tabindex="4" /></td>
 			</tr>
 			
 			<tr>
 				<td width="80">Club Name: <font color="red"><strong>*</strong></font></td>
-				<td width="30"><input id="clubName" name="clubName" value="<?php echo htmlentities($clubName) ?>" type="text" tabindex="5" required /></td>
+				<td width="30"><input id="clubName" name="clubName" value="<?php echo htmlentities($clubName) ?>" type="text" tabindex="5" /></td>
 				<td width="50"></td>
 				<td width="75">Active:</td>
 				<td width="30">
